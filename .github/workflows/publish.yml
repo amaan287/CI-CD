@@ -1,0 +1,24 @@
+name: Build and Publish Docker Image
+on:
+  push:
+    branches:
+      - build
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Buld Docker Image
+        run: docker build . --tag my-image-name:$(date +%s)
+
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          ## the name of our image
+          name: forbsey/go-api
+          ## Here we pass in our Docker Username
+          username: ${{ secrets.DOCKER_USERNAME }}
+          ## and our Docker password which
+          password: ${{ secrets.DOCKER_PASSWORD }}
