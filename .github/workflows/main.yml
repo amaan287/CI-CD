@@ -10,5 +10,5 @@ jobs:
   Hello:
     runs-on: ubuntu-latest
     steps:
-      - name: CI-CD
-        run: go run main.go
+      - name: Hello world
+        run: echo "Hello world"
