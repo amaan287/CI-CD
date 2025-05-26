@@ -1,1 +1,14 @@
+name: CI-CD
 
+on:
+  push:
+    branches:
+      - build
+      - main
+
+jobs:
+  Hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: CI-CD
+        run: go run main.go
