@@ -1,12 +1,20 @@
 package main
+
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 )
-func main(){
-	http.HandleFunc("/",func(w http.ResponseWriter, r *http.Request){
-		w.Write([]byte ("Hello world"))
+
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		_, err := w.Write([]byte("Hello world"))
+		if err != nil {
+			return
+		}
 	})
 	fmt.Println("Server is running on port 3000")
-	http.ListenAndServe(":3000",nil)
+	err := http.ListenAndServe(":3000", nil)
+	if err != nil {
+		return
+	}
 }
