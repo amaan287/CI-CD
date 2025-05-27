@@ -22,6 +22,10 @@ FROM alpine:latest
 # Install ca-certificates for HTTPS requests
 RUN apk --no-cache add ca-certificates
 
+# Create a non-root user
+RUN addgroup -g 1001 -S golang && \
+    adduser -S golang -u 1001
+
 # Set working directory
 WORKDIR /app
 
